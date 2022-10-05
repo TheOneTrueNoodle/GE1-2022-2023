@@ -31,13 +31,13 @@ public class Generator : MonoBehaviour
 
                 GameObject newObj = Instantiate(prefab);
                 newObj.transform.position = new Vector3(x, y, 0);
+                //how do i do color...
+                newObj.GetComponent<Renderer>().material.color = Color.HSVToRGB(j / (float)circumference, 1, 1);
 
                 newObj.transform.parent = gameObject.transform;
             }
         }
     }
-
-
     /* IM PUTTING ALL NOTES IN HERE SO I DONT CLUTTER CODE
      * If we have the circumferance of the circle, which represents the length of the circles line, we can use that number to get the number of required dodecahedrons for this loop!!!
      * Then add the i from loop to make it further out each time...
