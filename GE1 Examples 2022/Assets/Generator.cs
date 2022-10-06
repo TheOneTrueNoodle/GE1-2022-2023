@@ -31,10 +31,12 @@ public class Generator : MonoBehaviour
 
                 GameObject newObj = Instantiate(prefab);
                 newObj.transform.position = new Vector3(x, y, 0);
+                newObj.transform.parent = gameObject.transform;
+
                 //how do i do color...
                 newObj.GetComponent<Renderer>().material.color = Color.HSVToRGB(j / (float)circumference, 1, 1);
-
-                newObj.transform.parent = gameObject.transform;
+                newObj.GetComponent<RotateMe>().StartingColor = j;
+                newObj.GetComponent<RotateMe>().HighestColor = circumference;
             }
         }
     }
