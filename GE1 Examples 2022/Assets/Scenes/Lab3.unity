@@ -608,7 +608,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HeadTransform: {fileID: 209903338}
   TailTransform: {fileID: 258269510}
-  Frequency: 0
+  Frequency: 0.86
   HeadAmplitude: 40
   TailAmplitude: 40
   Theta: 0

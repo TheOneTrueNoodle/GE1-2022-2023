@@ -11,14 +11,6 @@ public class Fish : MonoBehaviour
     public float HeadAmplitude = 40f;
     public float TailAmplitude = 40f;
 
-    public float Theta = 0;
-
-    private void Start()
-    {
-        Theta = 0;
-    }
-
-
     public void Update()
     {
         HeadTransform.localRotation = Quaternion.AngleAxis(HeadAmplitude * Mathf.Sin(Time.time * Frequency), Vector3.forward);
