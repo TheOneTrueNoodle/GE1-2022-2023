@@ -18,7 +18,6 @@ public class PhysicsFactory : MonoBehaviour {
                 float z = radius * Mathf.Cos(theta);
                 Vector3 pos = point + new Vector3(x, h, z);
 
-                //Noticed the create brick function and realised i could make a brick but what if I made the tower out of something else too???
                 //Okay a tower of cylinders doesnt reeeeeal work XD. Its more like an explosion of Cylinders haha! It looks cool but doesnt do what i want so imma make it out of cubes now XD
 
                 /*GameObject segCylinder = CreateCylinder(pos.x, pos.y, pos.z, radius / segments, radius / segments, Quaternion.AngleAxis(theta * Mathf.Rad2Deg, Vector3.up));
@@ -93,7 +92,6 @@ public class PhysicsFactory : MonoBehaviour {
             hinge.anchor = Vector3.up;
             hinge.autoConfigureConnectedAnchor = true;
         }
-        
         
         return chassis;
        
