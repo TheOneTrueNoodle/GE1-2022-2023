@@ -5,8 +5,33 @@ public class PhysicsFactory : MonoBehaviour {
 
     public LayerMask groundLM;
     public GameObject wormPrefab;
+
     void CreateTower(float radius, int height, int segments, Vector3 point)
     {
+        float segmentTheta = (Mathf.PI * 2) / segments;
+        for (int h = 0; h <= height; h++)
+        {
+            for (int i = 0; i <= segments; i++)
+            {
+                float theta = segmentTheta * i + (h * segmentTheta * 0.5f);
+                float x = radius * Mathf.Sin(theta);
+                float z = radius * Mathf.Cos(theta);
+                Vector3 pos = point + new Vector3(x, h, z);
+
+                //Noticed the create brick function and realised i could make a brick but what if I made the tower out of something else too???
+                //Okay a tower of cylinders doesnt reeeeeal work XD. Its more like an explosion of Cylinders haha! It looks cool but doesnt do what i want so imma make it out of cubes now XD
+
+                /*GameObject segCylinder = CreateCylinder(pos.x, pos.y, pos.z, radius / segments, radius / segments, Quaternion.AngleAxis(theta * Mathf.Rad2Deg, Vector3.up));
+                segCylinder.GetComponent<Renderer>().material.color = Color.HSVToRGB(Random.Range(0f, 1f), 1, 1);*/
+
+                GameObject segCube = CreateBrick(pos.x, pos.y, pos.z, 1, 1, 1);
+                segCube.transform.rotation = Quaternion.AngleAxis(theta * Mathf.Rad2Deg, Vector3.up);
+                segCube.GetComponent<Renderer>().material.color = Color.HSVToRGB(Random.Range(0f, 1f), 1f, 1f);
+
+                //Okay so, I found out that the reason the cylinder didnt work is cause of the theta not working so imma retest it :/
+                //For some reason my towers keep exploding and idk why...
+            }
+        }
     }
 
     
@@ -74,11 +99,6 @@ public class PhysicsFactory : MonoBehaviour {
        
     }   
 
-
-    // Use this for initialization
-    void Start () {       
-    }
-
     GameObject CreateGear(float x, float y, float z, float diameter, int numCogs)
     {
         Quaternion q = Quaternion.AngleAxis(90, Vector3.right);
@@ -134,6 +154,7 @@ public class PhysicsFactory : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        //CREATE CAR
         if (Input.GetKeyDown(KeyCode.C))
         {
             RaycastHit raycastHit;
@@ -149,6 +170,7 @@ public class PhysicsFactory : MonoBehaviour {
             }
         }
 
+        //CREATE GEAR
         if (Input.GetKeyDown(KeyCode.G))
         {
             RaycastHit raycastHit;
@@ -164,6 +186,7 @@ public class PhysicsFactory : MonoBehaviour {
             }
         }
 
+        //CREATE TOWER
         if (Input.GetKeyDown(KeyCode.U))
         {
             RaycastHit rch;
@@ -176,6 +199,7 @@ public class PhysicsFactory : MonoBehaviour {
             }
         }
 
+        //CREATE WORM
         if (Input.GetKeyDown(KeyCode.I))
         {
             RaycastHit rch;
